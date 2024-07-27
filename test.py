@@ -1,14 +1,5 @@
 
-# 30.py finding the point where n x > D(x)
-def D(x):
-    sx = str(x)
-    total = 0
-    for c in sx:
-        total += int(c)**5
-    return total
-
-
-
-for x in range(100000, 1000000):
-    if x <= D(x):
-        print(x, D(x))
+primes = [2]
+for n in range(3, 1000000, 2):
+    for i in range(3, n//2, 2):
+        if n % i == 0: primes.append(n)

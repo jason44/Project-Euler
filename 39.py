@@ -6,7 +6,8 @@ def is_square(n):
     if (n & 1): start = 3
     else: start = 2
     for d in range(start, n//2 + 1, 2):
-        if n//d == d and d*(n//d) == n:
+        q = n // d
+        if q == d and d*(q) == n:
             return True
     return False
 
