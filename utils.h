@@ -7,6 +7,7 @@
 using namespace std;
 
 #define IS_INTEGER(x) floor(x) == x ? true : false
+#define INT_TO_ASCII(x) (char)(x+48)
 
 inline int is_prime(int n)
 {
@@ -58,19 +59,21 @@ void find_primes_to(int n)
 template <typename T>
 inline void print_vector(vector<T> &v) 
 {
+    cout << "[ ";
     for (auto &c : v) {
         cout << c << ", ";
     }
-    puts("");
+    puts(" ]");
 }
 
 template <typename T>
 inline void print_set(set<T> &v) 
 {
+    cout << "{";
     for (auto &c : v) {
         cout << c << ", ";
     }
-    puts("");
+    puts("}");
 }
 
 /*
@@ -110,4 +113,48 @@ inline int vec_sum(vector<T> &v) {
     }
 
     return total;
+}
+
+template <typename T>
+inline int vec_min(vector<T> &v) {
+    T min = 99999999;
+    for (auto &t : v) {
+        if (t < min) {
+            min = t;
+        }
+    }
+    return min;
+}
+
+template <typename T>
+inline int set_min(set<T> &s) {
+    T min = 99999999;
+    for (auto &t : s) {
+        if (t < min) {
+            min = t;
+        }
+    }
+    return min;
+}
+
+template <typename T>
+inline int vec_max(vector<T> &v) {
+    T max = 0;
+    for (auto &t : v) {
+        if (t > max) {
+            max = t;
+        }
+    }
+    return max;
+}
+
+template <typename T>
+inline int set_max(set<T> &s) {
+    T max = 0;
+    for (auto &t : s) {
+        if (t > max) {
+            max = t;
+        }
+    }
+    return max;
 }
