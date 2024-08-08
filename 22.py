@@ -1,4 +1,4 @@
-f = open('names_22.txt', 'r')
+f = open('22_names.txt', 'r')
 
 names = f.read().split(',')
 names = [name[1:-1] for name in names]

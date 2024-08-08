@@ -1,5 +1,3 @@
-
-
 values = {
     'A' : 1,
     'B' : 2,
@@ -36,7 +34,7 @@ for i in range(50):
     cumsum += i
     tri_nums.append(cumsum)
 
-f = open('words_42.txt', 'r').read()
+f = open('42_words.txt', 'r').read()
 words = f.split(',')
 words = [word[1:-1] for word in words]
 for word in words:
