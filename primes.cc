@@ -6,12 +6,8 @@ using namespace std;
 
 int main() 
 {
-    vector<int> primes = {2};
-    for (int n = 3; n < 1000000; n += 2) {
-        if (is_prime(n)) {
-            primes.push_back(n);
-        }
-    }
+    vector<int> primes = sieve_primes(1000000);
+
     ofstream of("primes.txt");
     if (!of) {
         cerr << "Error opening file for writing" << endl;

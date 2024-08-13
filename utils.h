@@ -1,60 +1,16 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
+#include <algorithm>
 #include <vector>
+#include <cstring>
+#include <cstdlib>
 #include <set>
 
 using namespace std;
 
 #define IS_INTEGER(x) floor(x) == x ? true : false
 #define INT_TO_ASCII(x) (char)(x+48)
-
-inline int is_prime(int n)
-{
-    // algorithm below only holds for n >= 3
-    // so we manually define outputs for 1,2,3
-    if (n == 0) return 0;
-    if (n == 1) return 0;
-    if (n == 2) return 1;
-
-    // factor out -1 if it is a factor
-    if (n < 0) {
-        n *= -1;
-    }
-
-    if (n & 1) {
-        for (int i = 3; i < n/2; i += 2) {
-            if (n % i == 0) {
-                return 0;
-            }
-        }
-    } else {
-        return 0;
-    }
-    return 1;
-}
-
-inline int is_prime2(int n)
-{
-    for (int i = 3; i < n/2; i += 2) {
-        if (n % i == 0) {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
-void find_primes_to(int n)
-{
-    for (int i = 3; i < n; i += 2)
-    {
-        if (is_prime(i)) {
-            cout << i << '\n';
-        }
-    }
-}
-
 
 template <typename T>
 inline void print_vector(vector<T> &v) 
@@ -157,4 +113,77 @@ inline int set_max(set<T> &s) {
         }
     }
     return max;
+}
+
+inline int is_prime(int n)
+{
+    // algorithm below only holds for n >= 3
+    // so we manually define outputs for 1,2,3
+    if (n == 0) return 0;
+    if (n == 1) return 0;
+    if (n == 2) return 1;
+
+    // factor out -1 if it is a factor
+    if (n < 0) {
+        n *= -1;
+    }
+
+    if (n & 1) {
+        for (int i = 3; i < n/2; i += 2) {
+            if (n % i == 0) {
+                return 0;
+            }
+        }
+    } else {
+        return 0;
+    }
+    return 1;
+}
+
+inline int is_prime2(int n)
+{
+    for (int i = 3; i < n/2; i += 2) {
+        if (n % i == 0) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+void find_primes_to(int n)
+{
+    for (int i = 3; i < n; i += 2)
+    {
+        if (is_prime(i)) {
+            cout << i << '\n';
+        }
+    }
+}
+
+vector<int> sieve_primes(const int n) 
+{
+    vector<int> prime_nums;
+    bool *mask = (bool *)malloc(sizeof(bool) * n+1);
+    memset(mask, true, sizeof(bool) * n+1);
+    mask[0] = false;
+    mask[1] = false;
+
+    for (int i = 2; i < static_cast<int>(sqrt(n)); i++) {
+        if (mask[i]) {
+            int desc = static_cast<int>(pow(i, 2)); 
+            do {
+                mask[desc] = false;
+                desc += i;
+            } while (desc <= n);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (mask[i]) {
+            prime_nums.push_back(i);
+        }
+    }
+
+    free(mask);
+    return prime_nums;
 }

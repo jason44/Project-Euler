@@ -53,8 +53,8 @@ int main()
 
                     }
 
-                    // an english sentence almost certainly has a large number of alphanumeric values
-                    // compared to non-alphanumeric values.
+                    // an english sentence almost certainly has a large number of alphanumeric values 
+                    // and spaces than it does non-alphanumeric values.
                     int alphanum = 0;
                     for (char &c : out) {
                         if (c == ' ') alphanum++;
