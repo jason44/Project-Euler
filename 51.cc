@@ -22,7 +22,7 @@ inline void D(vector<int> &choose, string &candidate, int choose_count)
 {
     if (choose.size() == choose_count) {
         int cand = atoi(candidate.data());
-        set<int> family = {};
+        set<int> family;
         for (int j = 0; j < 9+1; j++) {
             if (j == 0 && choose[0] == 0) {
                 continue;

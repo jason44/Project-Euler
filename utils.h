@@ -13,177 +13,32 @@ using namespace std;
 #define INT_TO_ASCII(x) (char)(x+48)
 
 template <typename T>
-inline void print_vector(vector<T> &v) 
-{
-    cout << "[ ";
-    for (auto &c : v) {
-        cout << c << ", ";
-    }
-    puts(" ]");
-}
+inline void print_vector(vector<T> &v);
 
 template <typename T>
-inline void print_set(set<T> &v) 
-{
-    cout << "{";
-    for (auto &c : v) {
-        cout << c << ", ";
-    }
-    puts("}");
-}
+inline void print_set(set<T> &v);
 
-/*
-    start = 0
-    if (n & 1): start = 3
-    else: start = 2
-    for d in range(start, n//2 + 1, 2):
-        q = n // d
-        if q == d and d*(q) == n:
-            return True
-    return False
-*/
-inline bool is_square(int n) 
-{
-    if (n == 1) return true;
-    int start = 0;
-    if (n & 1) {
-        start = 3;
-    } else {
-        start = 2;
-    }
-
-    for (int d = start; d < n / 2 + 1; d += 2) {
-        int q = n / d;
-        if (q == d && (q * d) == n) {
-            return true;
-        }
-    }
-    return false;
-}
+inline bool is_square(int n);
 
 template <typename T>
-inline int vec_sum(vector<T> &v) {
-    T total = 0;
-    for (auto &t : v) {
-        total += t;
-    }
-
-    return total;
-}
+inline int vec_sum(vector<T> &v);
 
 template <typename T>
-inline int vec_min(vector<T> &v) {
-    T min = 99999999;
-    for (auto &t : v) {
-        if (t < min) {
-            min = t;
-        }
-    }
-    return min;
-}
+inline int vec_min(vector<T> &v);
 
 template <typename T>
-inline int set_min(set<T> &s) {
-    T min = 99999999;
-    for (auto &t : s) {
-        if (t < min) {
-            min = t;
-        }
-    }
-    return min;
-}
+inline int set_min(set<T> &s);
 
 template <typename T>
-inline int vec_max(vector<T> &v) {
-    T max = 0;
-    for (auto &t : v) {
-        if (t > max) {
-            max = t;
-        }
-    }
-    return max;
-}
+inline int vec_max(vector<T> &v);
 
 template <typename T>
-inline int set_max(set<T> &s) {
-    T max = 0;
-    for (auto &t : s) {
-        if (t > max) {
-            max = t;
-        }
-    }
-    return max;
-}
+inline int set_max(set<T> &s);
 
-inline int is_prime(int n)
-{
-    // algorithm below only holds for n >= 3
-    // so we manually define outputs for 1,2,3
-    if (n == 0) return 0;
-    if (n == 1) return 0;
-    if (n == 2) return 1;
+inline int is_prime(int n);
 
-    // factor out -1 if it is a factor
-    if (n < 0) {
-        n *= -1;
-    }
+inline int is_prime2(int n);
 
-    if (n & 1) {
-        for (int i = 3; i < n/2; i += 2) {
-            if (n % i == 0) {
-                return 0;
-            }
-        }
-    } else {
-        return 0;
-    }
-    return 1;
-}
+void find_primes_to(int n);
 
-inline int is_prime2(int n)
-{
-    for (int i = 3; i < n/2; i += 2) {
-        if (n % i == 0) {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
-void find_primes_to(int n)
-{
-    for (int i = 3; i < n; i += 2)
-    {
-        if (is_prime(i)) {
-            cout << i << '\n';
-        }
-    }
-}
-
-vector<int> sieve_primes(const int n) 
-{
-    vector<int> prime_nums;
-    bool *mask = (bool *)malloc(sizeof(bool) * n+1);
-    memset(mask, true, sizeof(bool) * n+1);
-    mask[0] = false;
-    mask[1] = false;
-
-    for (int i = 2; i < static_cast<int>(sqrt(n)); i++) {
-        if (mask[i]) {
-            int desc = static_cast<int>(pow(i, 2)); 
-            do {
-                mask[desc] = false;
-                desc += i;
-            } while (desc <= n);
-        }
-    }
-    for (int i = 0; i < n; i++) {
-        if (mask[i]) {
-            prime_nums.push_back(i);
-        }
-    }
-
-    free(mask);
-    return prime_nums;
-}
+vector<int> sieve_primes(const int n);
