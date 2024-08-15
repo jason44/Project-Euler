@@ -42,3 +42,15 @@ inline int is_prime2(int n);
 void find_primes_to(int n);
 
 vector<int> sieve_primes(const int n);
+
+inline bool is_triangle(const int n);
+
+inline bool is_square(const int n);
+
+inline bool is_penta(const int n);
+
+inline bool is_hexa(const int n);
+
+inline bool is_hepta(const int n);
+
+inline bool is_octa(const int n);

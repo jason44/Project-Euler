@@ -1,4 +1,3 @@
-#from utils import is_prime2
 import cpp_utils
 
 f = open('primes.txt').read().split(' ')
@@ -6,24 +5,23 @@ primes = f
 primes.remove('')
 
 print(primes[-1])
-best = 98003 # previous attempt 
-start_idx = primes.index('3119') + 1 # previous attempt's start
+best = 999999 
 stop_idx = len(primes) // 12
 
 def D(prime_set):
     global best
     print(prime_set)
+    pint = [int(_p) for _p in prime_set]
+    if (pint[0] >= best): 
+        print("BEST: ", best)
+        exit()
+    if sum(pint) > best: return
     if len(prime_set) == 5:
-        pint = [int(_p) for _p in prime_set]
         if sum(pint) < best:
             print(pint)
             best = sum(pint)
             print("CURRENT BEST:", best)
-            # exit and try the current result
-            # it makes sense that the smallest result would appear earlier than later
-            exit(0)
-        return prime_set
-    start_idx = primes.index(prime_set[-1])
+        return 
     for p in primes[:stop_idx]:
         all_prime = True
         for n in prime_set:
@@ -37,10 +35,8 @@ def D(prime_set):
             tmp_set.append(p)
             D(tmp_set)
 
-for p in primes[start_idx:stop_idx]:
+for p in primes[:stop_idx]:
     D([p])
-
-print("BEST: ", best)
 
 
 
