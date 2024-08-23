@@ -150,7 +150,7 @@ void find_primes_to(int n)
 }
 
 vector<int> sieve_primes(const int n)
- {
+{
     vector<int> prime_nums;
     bool *mask = (bool *)malloc(sizeof(bool) * n + 1);
     memset(mask, true, sizeof(bool) * n + 1);

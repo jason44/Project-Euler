@@ -23,7 +23,7 @@ def match(nset):
         if len(pref) == 0:
             return False
 
-    # match
+    # match candidates to figure
     for i in range(len(figures)):
         match = preferences[i][0]
         for pref in preferences:
