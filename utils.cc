@@ -16,13 +16,19 @@ using namespace std;
 #define IS_INTEGER(x) floor(x) == x ? true : false
 #define INT_TO_ASCII(x) (char)(x + 48)
 
-// MACOS: for pybind
-// clang++ -O3 -DPYBIND -Wall -shared -std=c++11 -undefined dynamic_lookup
-// `python3 -m pybind11 --includes` utils.cc -o cpp_utils`python3-config
-// --extension-suffix`
+/* 
+ * MACOS: for pybind
+ * clang++ -O3 -DPYBIND -Wall -shared -std=c++11 -undefined dynamic_lookup
+ * `python3 -m pybind11 --includes` utils.cc -o cpp_utils`python3-config
+ * --extension-suffix`
+ * 
+ * MACOS: static library
+ * clang++ -O3 -shared -std=c++11 utils.cc -o libcpp_utils.so
+ * use library with -L. -lcpp_utils
+ */
 
 template <typename T>
-inline void print_vector(vector<T> &v) 
+void print_vector(vector<T> &v) 
 {
     cout << "[ ";
     for (auto &c : v) {
@@ -32,7 +38,7 @@ inline void print_vector(vector<T> &v)
 }
 
 template <typename T>
-inline void print_set(set<T> &v) 
+void print_set(set<T> &v) 
 {
     cout << "{";
     for (auto &c : v) {
@@ -42,7 +48,7 @@ inline void print_set(set<T> &v)
 }
 
 template <typename T>
-inline int vec_sum(vector<T> &v) 
+int vec_sum(vector<T> &v) 
 {
     T total = 0;
     for (auto &t : v) {
@@ -53,7 +59,7 @@ inline int vec_sum(vector<T> &v)
 }
 
 template <typename T>
-inline int vec_min(vector<T> &v) 
+int vec_min(vector<T> &v) 
 {
     T min = 99999999;
     for (auto &t : v) {
@@ -65,7 +71,7 @@ inline int vec_min(vector<T> &v)
 }
 
 template <typename T>
-inline int set_min(set<T> &s) 
+int set_min(set<T> &s) 
 {
     T min = 99999999;
     for (auto &t : s) {
@@ -77,7 +83,7 @@ inline int set_min(set<T> &s)
 }
 
 template <typename T>
-inline int vec_max(vector<T> &v) 
+int vec_max(vector<T> &v) 
 {
     T max = 0;
     for (auto &t : v) {
@@ -89,7 +95,7 @@ inline int vec_max(vector<T> &v)
 }
 
 template <typename T>
-inline int set_max(set<T> &s) 
+int set_max(set<T> &s) 
 {
     T max = 0;
     for (auto &t : s) {
@@ -100,7 +106,7 @@ inline int set_max(set<T> &s)
     return max;
 }
 
-inline int is_prime(int n) 
+int is_prime(int n) 
 {
     // algorithm below only holds for n >= 3
     // so we manually define outputs for 1,2,3
@@ -127,7 +133,7 @@ inline int is_prime(int n)
 
 // theorem: any prime number > 3 can be written as the sum 6k +- 1
 // theorem: no number has factors greater than its square root
-inline bool is_prime2(uint64_t n) 
+bool is_prime2(uint64_t n) 
 {
     if (n <= 1) return false;
     if (n <= 3) return true;
@@ -176,7 +182,7 @@ vector<int> sieve_primes(const int n)
     return prime_nums;
 }
 
-inline bool is_triangle(int n) {
+bool is_triangle(int n) {
     n *= 2;
     int k = 1;
     while (true) {
@@ -191,7 +197,7 @@ inline bool is_triangle(int n) {
     }
 }
 
-inline bool is_triangle2(int n) 
+bool is_triangle2(int n) 
 {
     int i = 1;
     while (n > 0) {
@@ -204,7 +210,7 @@ inline bool is_triangle2(int n)
     return false;
 }
 
-inline bool is_square(int n) 
+bool is_square(int n) 
 {
     if (n == 1) return true;
     int start = 0;
@@ -223,7 +229,7 @@ inline bool is_square(int n)
     return false;
 }
 
-inline bool is_square2(int n)
+bool is_square2(int n)
 {
     int sqrt_n = static_cast<int>(sqrt(n));
     if (sqrt_n * sqrt_n == n) {
@@ -232,7 +238,7 @@ inline bool is_square2(int n)
     return false;
 }
 
-inline bool is_penta(int n) 
+bool is_penta(int n) 
 {
     n *= 2;
     int k = 1;
@@ -248,7 +254,7 @@ inline bool is_penta(int n)
     }
 }
 
-inline bool is_hexa(int n) 
+bool is_hexa(int n) 
 {
     int k = 1;
     while (true) {
@@ -263,7 +269,7 @@ inline bool is_hexa(int n)
     }
 }
 
-inline bool is_hepta(int n) 
+bool is_hepta(int n) 
 {
     n *= 2;
     int k = 1;
@@ -279,7 +285,7 @@ inline bool is_hepta(int n)
     }
 }
 
-inline bool is_octa(int n) 
+bool is_octa(int n) 
 {
     int k = 1;
     while (true) {
